@@ -114,7 +114,7 @@ function generateOptions() {
   var numberCase = confirm("Would you like to include numbers?");
   var symbolCase = confirm("Would you like to include symbols");
 
-  console.log(length, lowerCase, upperCase, numberCase, symbolCase);
+  // console.log(length, lowerCase, upperCase, numberCase, symbolCase);
 
   var userOptions = {
     length: length,
@@ -127,14 +127,15 @@ function generateOptions() {
   return userOptions;
 }
 
-//function to generate a random letter
+//function to generate a random
 function random(arr) {
   var index = Math.floor(Math.random() * arr.length);
   var letter = arr[index];
-  console.log("ind random", arr, letter);
+  // console.log("ind random", arr, letter);
   return letter;
 }
 
+//function to generate password taking into consideration the selections from the user
 
 function generatePassword() {
   
@@ -145,6 +146,7 @@ function generatePassword() {
   var possibleChar = [];
   var guaranteeChar = [];
 
+  //Conditions
   if (options.lower) {
     possibleChar = possibleChar.concat(lowerCasedCharacters);
     guaranteeChar.push(random(lowerCasedCharacters));
@@ -155,8 +157,19 @@ function generatePassword() {
     guaranteeChar.push(random(numericCharacters));
   }
 
-  console.log("possible", possibleChar, "guarantee", guaranteeChar);
+  if (options.upper) {
+    possibleChar = possibleChar.concat(upperCasedCharacters);
+    guaranteeChar.push(random(upperCasedCharacters));
+  }
 
+  if (options.symbol) {
+    possibleChar = possibleChar.concat(specialCharacters);
+    guaranteeChar.push(random(specialCharacters));
+  }
+
+  // console.log("possible", possibleChar, "guarantee", guaranteeChar);
+
+  //loop
   for (let i = 0; i < options.length; i++) {
     var characters = random(possibleChar);
     result.push(characters);
@@ -165,7 +178,7 @@ function generatePassword() {
   for (let i = 0; i < guaranteeChar.length; i++) {
     result[i] = guaranteeChar[i];
   }
-  console.log("before, join", result);
+  // console.log("before, join", result);
   return result.join("");
 }
 
