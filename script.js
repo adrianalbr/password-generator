@@ -131,7 +131,7 @@ function generateOptions() {
 function random(arr) {
   var index = Math.floor(Math.random() * arr.length);
   var letter = arr[index];
-  // console.log("ind random", arr, letter);
+  
   return letter;
 }
 
@@ -146,7 +146,7 @@ function generatePassword() {
   var possibleChar = [];
   var guaranteeChar = [];
 
-  //Conditions
+  //Conditions for characters
   if (options.lower) {
     possibleChar = possibleChar.concat(lowerCasedCharacters);
     guaranteeChar.push(random(lowerCasedCharacters));
@@ -167,9 +167,7 @@ function generatePassword() {
     guaranteeChar.push(random(specialCharacters));
   }
 
-  // console.log("possible", possibleChar, "guarantee", guaranteeChar);
-
-  //loop
+  //for loop
   for (let i = 0; i < options.length; i++) {
     var characters = random(possibleChar);
     result.push(characters);
@@ -178,7 +176,7 @@ function generatePassword() {
   for (let i = 0; i < guaranteeChar.length; i++) {
     result[i] = guaranteeChar[i];
   }
-  // console.log("before, join", result);
+  
   return result.join("");
 }
 
